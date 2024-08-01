@@ -18,7 +18,13 @@
     <%- end -%>
 <%- end -%>
 <%- if _item['auth_require'] -%>
+    <%- if _item['auth_require'].is_a?(Array) -%>
+      <%- _item['auth_require'].each do |req| -%>
+    Require <%= req.strip %>
+      <%- end -%>
+    <%- else -%>
     Require <%= _item['auth_require'] %>
+    <%- end -%>
 <%- elsif !_item['require'] || _item['require'] == '' -%>
     Require all granted
 <%- end -%>
