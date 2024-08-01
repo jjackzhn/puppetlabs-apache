@@ -19,14 +19,26 @@
     <%- end -%>
   <%- end -%>
   <%- if _item['auth_require'] -%>
+    <%- if _item['auth_require'].is_a?(Array) -%>
+      <%- _item['auth_require'].each do |req| -%>
+    Require <%= req.strip %>
+      <%- end -%>
+    <%- else -%>
     Require <%= _item['auth_require'] %>
+    <%- end -%>
   <%- end -%>
   <%- if !(_item['require'] && _item['require'] != '') && _item['require'] !~ /unmanaged/i && !(_item['auth_require']) -%>
     Require all granted
   <%- end -%>
 <%- else -%>
   <%- if _item['auth_require'] -%>
+    <%- if _item['auth_require'].is_a?(Array) -%>
+      <%- _item['auth_require'].each do |req| -%>
+    Require <%= req.strip %>
+      <%- end -%>
+    <%- else -%>
     Require <%= _item['auth_require'] %>
+    <%- end -%>
   <%- end -%>
   <%- if _item['order'] and _item['order'] != '' -%>
     Order <%= Array(_item['order']).join(',') %>
